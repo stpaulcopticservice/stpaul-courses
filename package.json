@@ -2,7 +2,7 @@
 {
   "name": "stpaul-proxy",
   "version": "1.0.0",
-  "description": "Reverse proxy for stpaulcopticservice.org/courses",
+  "description": "Reverse proxy for stpaulcopticservice.org/login",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
