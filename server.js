@@ -1,14 +1,13 @@
-
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Proxy only the /login path
 app.use('/login', createProxyMiddleware({
     target: 'https://old.stpaulcopticservice.org',
     changeOrigin: true,
+    selfHandleResponse: false, // Important for redirect control
     pathRewrite: {
         '^/login': '/login',
     },
@@ -17,7 +16,6 @@ app.use('/login', createProxyMiddleware({
     }
 }));
 
-// Optional: Home route
 app.get('/', (req, res) => {
     res.send('Reverse Proxy is live. Go to /login');
 });
