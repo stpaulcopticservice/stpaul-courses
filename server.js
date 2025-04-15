@@ -5,12 +5,12 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Proxy only the /courses path
-app.use('/courses', createProxyMiddleware({
+// Proxy only the /login path
+app.use('/login', createProxyMiddleware({
     target: 'https://old.stpaulcopticservice.org',
     changeOrigin: true,
     pathRewrite: {
-        '^/courses': '/courses',
+        '^/login': '/login',
     },
     onProxyReq: (proxyReq, req, res) => {
         proxyReq.setHeader('origin', 'https://old.stpaulcopticservice.org');
@@ -19,7 +19,7 @@ app.use('/courses', createProxyMiddleware({
 
 // Optional: Home route
 app.get('/', (req, res) => {
-    res.send('Reverse Proxy is live. Go to /courses');
+    res.send('Reverse Proxy is live. Go to /login');
 });
 
 app.listen(PORT, () => {
